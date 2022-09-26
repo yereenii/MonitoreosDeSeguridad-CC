@@ -7,4 +7,6 @@ app_name='reportesapp'
 #Aqui se determinan las urls a las que se puede acceder a la página
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
+    path('home/', views.Home.as_view(), name='home'),
+    path('actos-inseguros/', views.ActosInseguros.as_view(), name='actosinseguros'),
 ]
