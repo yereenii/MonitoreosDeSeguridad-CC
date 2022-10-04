@@ -7,92 +7,104 @@
 
 {% block content %}
 
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="hero">
+        <div class="container position-relative">
+            <div class="row gy-5" data-aos="fade-in">
+                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+                    <h2>Monitoreos de <span>Seguridad</span></h2>
+                    <p>Realiza cualquier monitoreo de seguridad de manera sencilla en la plataforma.</p>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="#actos" class="btn-get-started">Selecciona tu monitoreo</a>
+                    </div>
+
+                    {% if user.is_authenticaded %}
+                        {% if request.user.is_staff %}
+                            <div class="d-flex justify-content-center justify-content-lg-start">
+                                <a href="#actos" class="btn-get-started">Registra un usuariostaff</a>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="{% url 'usuariourl:registro_colab' %}" class="btn-get-started">Registra un usuario</a>
+                        </div>
+                    {% endif %}
 
 
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero">
-    <div class="container position-relative">
-      <div class="row gy-5" data-aos="fade-in">
-        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-          <h2>Monitoreos de <span>Seguridad</span></h2>
-          <p>Realiza cualquier monitoreo de seguridad de manera sencilla en la plataforma.</p>
-          <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#actos" class="btn-get-started">Selecciona tu monitoreo</a>
-
-          </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <img src="{% static "img/hero-img.svg" %}" class="img-fluid" alt="" data-aos="zoom-out"
+                         data-aos-delay="100">
+                </div>
+            </div>
         </div>
-        <div class="col-lg-6 order-1 order-lg-2">
-          <img src="{% static "img/hero-img.svg" %}" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
+
+        <div class="icon-boxes position-relative" id="actos">
+            <div class="container position-relative">
+                <div class="row gy-4 mt-5">
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box">
+                            <div class="icon"><i class="bi bi-shield-fill-x"></i></div>
+                            <h4 class="title"><a href="{% url 'reportesapp:actosinseguros' %}" class="stretched-link">Actos
+                                Inseguros</a></h4>
+                        </div>
+                    </div>
+                    <!--End Icon Box -->
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-box">
+                            <div class="icon"><i class="bi bi-shield-fill-check"></i></div>
+                            <h4 class="title"><a href="" class="stretched-link">Actos Seguros</a></h4>
+                        </div>
+                    </div>
+                    <!--End Icon Box -->
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-box">
+                            <div class="icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
+                            <h4 class="title"><a href="" class="stretched-link">Condiciones Inseguras</a></h4>
+                        </div>
+                    </div>
+                    <!--End Icon Box -->
+
+                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                        <div class="icon-box">
+                            <div class="icon"><i class="bi bi-bandaid-fill"></i></div>
+                            <h4 class="title"><a href="" class="stretched-link">Incidentes Menores</a></h4>
+                        </div>
+                    </div>
+                    <!--End Icon Box -->
+
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <div class="icon-boxes position-relative" id="actos">
-      <div class="container position-relative">
-        <div class="row gy-4 mt-5">
-
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-shield-fill-x"></i></div>
-              <h4 class="title"><a href="{% url 'reportesapp:actosinseguros' %}" class="stretched-link">Actos Inseguros</a></h4>
-            </div>
-          </div>
-          <!--End Icon Box -->
-
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-shield-fill-check"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Actos Seguros</a></h4>
-            </div>
-          </div>
-          <!--End Icon Box -->
-
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Condiciones Inseguras</a></h4>
-            </div>
-          </div>
-          <!--End Icon Box -->
-
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-bandaid-fill"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Incidentes Menores</a></h4>
-            </div>
-          </div>
-          <!--End Icon Box -->
 
         </div>
-      </div>
-    </div>
+    </section>
+    <!-- End Hero Section -->
 
-    </div>
-  </section>
-  <!-- End Hero Section -->
+    <main id="main">
 
-  <main id="main">
-
-  </main><!-- End #main -->
+    </main><!-- End #main -->
 
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <div id="preloader"></div>
+    <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
-  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
-  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+    <!-- Vendor JS Files -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
 
-  <!-- Template Main JS File -->
+    <!-- Template Main JS File -->
 
-  <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 
 
 
