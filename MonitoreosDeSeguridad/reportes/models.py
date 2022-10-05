@@ -50,30 +50,6 @@ class ActosInsegurosMod(models.Model):
         ('SG','Servicios Generales'),
     ]
 
-    AREA = [
-        ('A','Arsenico'),
-        ('BG','B. Grits'),
-        ('BF','Bloque Frío'),
-        ('B','BTS'),
-        ('C','Cocimientos'),
-        ('CM','Comedor Morita'),
-        ('CR','CRP'),
-        ('E','Envasado'),
-        ('EG','Estacionamiento General'),
-        ('FBF','Frente B. Frío'),
-        ('FCG','Frente Comedor General'),
-        ('FCM','Frente Comedor Morita'),
-        ('FE','Frente Envasado'),
-        ('FM','Frente MTTO'),
-        ('FP','Frente P.R.A.'),
-        ('FSM','Frente SM'),
-        ('LB','LAB BTS'),
-        ('OG','Oficinas Generales'),
-        ('PR','P.R.A.'),
-        ('T','Terciarios VETERINARIA'),
-        ('VPO','VPO Room'),
-    ]
-
     GRUPOSCOMP = [
         ('1','CIRCULACIÓN SEGURA DE MONTACARGAS VEHÍCULOS'),
         ('2','DESPLAZAMIENTO SEGURO DE PERSONAS'),
@@ -92,7 +68,7 @@ class ActosInsegurosMod(models.Model):
     desc_sancion = models.CharField('Descripción de Sanción ', max_length=1, choices= DESCRIPCIONSANCION, default='1')
     departamento = models.CharField('Departamento al que se detecta el Acto Inseguro ',max_length=2,choices=DEPARTAMENTO,default='CC')
     es_contratista = models.TextField('En caso de ser Contratista, especificar de cuál se trata ', max_length=250, null=True)
-    area = models.CharField('Área ', max_length=3, choices=AREA, default='A')
+    area = models.TextField('Área ', max_length=350, default='')
     nombre_reportador = models.TextField('Nombre de quién detecta ', max_length=300, default='')
     observaciones = models.TextField('Observaciones ', max_length = 500,default='')
     grupos = models.CharField('Grupos de Comportamiento ', max_length = 1, choices=GRUPOSCOMP, default='1')

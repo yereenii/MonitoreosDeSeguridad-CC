@@ -2737,10 +2737,9 @@ border-bottom-right-radius: .3rem;
 }
 
 .jumbotron{
-  background-color:lightgray;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
   margin-bottom: 2rem;
-  background-color: #e9ecef;
+  background-color: #e5f1ff;
   border-radius: .3rem;
 }
 

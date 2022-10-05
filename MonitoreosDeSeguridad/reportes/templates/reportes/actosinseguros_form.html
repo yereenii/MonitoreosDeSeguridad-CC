@@ -8,17 +8,17 @@
 
     <div class="container">
     <br>
-    <br>
+
         <h3 class="modal-title" id="tituloacto">Descripción de Acto Inseguro</h3>
-        <form>
+        <form method="post">
+            {% csrf_token %}
             <div class="jumbotron">
                 <div class="form-group row">
                     {% for question in form %}
-                        <label class="offset-md-1 col-md-4 col-form-label">{{ question.label }}
+                        <label class="col-form-label">{{ question.label }}
                             <br>
-                            <small class="form-text text-muted">{{ question.help_text }}</small>
                         </label>
-                        <div class="col-md-7">
+                        <div class="col-md-12">
                             {{ question }}
                             <br>
                         </div>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="text-center">
                             <br>
-                            <button type="submit" class="btn btn-success">Reportar</button>
+                            <button type="submit" class="btn btn-success">Realizar reporte</button>
                         </div>
             </div>
         </form>
