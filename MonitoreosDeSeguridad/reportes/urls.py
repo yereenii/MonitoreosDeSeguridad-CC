@@ -9,4 +9,7 @@ urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('home/', views.Home.as_view(), name='home'),
     path('actos-inseguros/', views.ActosInseguros.as_view(), name='actosinseguros'),
+    path('actos-seguros/', views.ActosSeguros.as_view(), name='actosseguros'),
+    path('incidentes-menores/', views.IncidentesMenores.as_view(), name='incidentesmenores'),
+    path('condiciones-inseguras/', views.CondicionesInseguras.as_view(), name='condicionesinseguras'),
 ]
