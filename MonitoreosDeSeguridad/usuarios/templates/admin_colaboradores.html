@@ -1,0 +1,45 @@
+{% extends "base_paginas.html" %}
+{% block title %}
+    Usuarios :: Administrador
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <br>
+    <div class="col-md-10 offset-md-1 offset-sm-1">
+        <h2 class="app-page-title">Usuarios Registrados</h2>
+    </div>
+     <div class="col-md-3 offset-md-1 offset-sm-1">
+       <a href="{% url 'usuariourl:registro_colab' %}" class="btn btn-primary">Crear Nuevo Usuario</a>
+    </div>
+
+    <div class="container card mb-3">
+        <table class="table">
+            <thead>
+            <th>Usuario Registrado:</th>
+            <th>Nombre de Usuario:</th>
+            <th>Acciones:</th>
+            </thead>
+            <tbody>
+            {% for user in usuarios %}
+                <tr>
+
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+
+                    <div class="justify-content-md-end">
+                        <td>
+                           {#<a href="{% url 'eduacionapp:veralumno' user.id %}" class="btn btn-primary btn-sm">Ver</a> #}
+                            {# <a href="{% url 'eduacionapp:editar' user.id %}" #}
+                              {#  class="btn btn-secondary btn-sm">Modificar</a>#}
+                            {# <a href="{% url 'eduacionapp:eliminarusuario' user.id %}" class="btn btn-danger btn-sm">Eliminar</a>#}
+                        </td>
+                    </diV>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock content %}

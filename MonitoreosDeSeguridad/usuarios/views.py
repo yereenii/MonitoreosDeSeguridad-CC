@@ -47,7 +47,6 @@ class Login(LoginView):
     success_url = reverse_lazy('reportesapp:home')
 
 
-class UsuarioAdminDetalle(TemplateView):
-    template_name = 'usuarios/usuarioAdmin_detail.html'
-    model = User
-    extra_context = {'etiquetatipousuario': 'empresa'}
+def listaUsuarios(request):
+    usuarios = User.objects.all()
+    return render(request, 'admin_colaboradores.html', {'usuarios': usuarios})
