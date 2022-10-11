@@ -7,7 +7,6 @@
 {% block content %}
 
 <div style="background-color: #eee;">
-    <section class="h-100 gradient-form">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-lg-10 col-md-12">
@@ -19,22 +18,43 @@
                                         <img src="{% static "img/ab-inbev.png" %}" style="width: 185px;" alt="logo">
                                             <h4 class="mt-1 mb-5 pb-1">Medio Ambiente</h4>
                                     </div>
-                                    <form>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        {% if form.errors %}
+                                            <div class="alert alert-danger">
+                                                <p>Verifica tu usuario y/o contraseña</p>
+                                            </div>
+                                        {% endif %}
+                                        {% if messages %}
+                                            <div class="alert alert-success">
+                                                {% for message in messages %}
+                                                    <p>{{ message }}</p>
+                                                {% endfor %}
+                                            </div>
+
+                                        {% endif %}
+
                                         <p><b>Inicia Sesión</b></p>
                                         <div class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example11">Usuario:</label>
-                                            <input type="email" id="form2Example11" class="form-control"
+                                            <label class="form-label" for="{{ form.username.id_for_label }}">Usuario:</label>
+                                            <input id="{{ form.username.id_for_label }}"
+                                                   name="{{ form.username.html_name }}"
+                                                   value="{{ form.username.value|default_if_none:"" }}" type="text"
+                                                   class="form-control"
                                                    placeholder="Número de SAP"/>
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example22">Contraseña:</label>
-                                            <input type="password" id="form2Example22" class="form-control"/>
+                                            <label class="form-label"  for="{{ form.password.id_for_label }}">Contraseña:</label>
+                                            <input id="{{ form.password.id_for_label }}"
+                                                   name="{{ form.password.html_name }}"
+                                                   value="{{ form.password.value|default_if_none:"" }}" type="password"
+                                                   class="form-control"/>
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                                                    type="button">Acceder
-                                            </button>
+                                            <input class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                                type="submit" value="Acceder" href="{% url 'reportesapp:home' %}">
+
                                             <!-- <a class="text-muted" href="#!">Forgot password?</a>-->
                                         </div>
 
@@ -64,10 +84,6 @@
                 </div>
             </div>
         </div>
-        </section>
-    <br>
-    <br>
-    <br>
 </div>
 
 {% endblock content %}

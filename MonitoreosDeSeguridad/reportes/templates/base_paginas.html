@@ -12,7 +12,7 @@
             <a href="{% url 'reportesapp:home' %}" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="/img/logo.png" alt=""> -->
-                <h1 style="color: #eec036">Compañía Cervecera de Zacatecas &nbsp;<span> AB InBev</span></h1>
+                <h1 style="color: #eec036">Compañía Cervecera de Zacatecas &nbsp;<span>AB InBev</span></h1>
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
@@ -32,9 +32,9 @@
                               </ul>
                             </li>-->
                             <li><a href="{% url 'reportesapp:actosinseguros' %}">Actos Inseguros</a></li>
-                            <li><a href="#">Actos Seguros</a></li>
-                            <li><a href="#">Condiciones Inseguras</a></li>
-                            <li><a href="#">Incidentes Menores </a></li>
+                            <li><a href="{% url 'reportesapp:actosseguros' %}">Actos Seguros</a></li>
+                            <li><a href="{% url 'reportesapp:condicionesinseguras' %}">Condiciones Inseguras</a></li>
+                            <li><a href="{% url 'reportesapp:incidentesmenores' %}">Incidentes Menores </a></li>
                         </ul>
                     </li>
                     <li>
@@ -48,7 +48,9 @@
                             {% endif %}
 
                         {% else %}
-                            <a href="#contact">USUARIO {{ user.get_username }}</a>
+                            <a href="#contact"> {{ user.get_username }}</a>
+                            <a class="#contact"
+                               href="{% url 'usuariourl:logout' %}?next={% url 'usuariourl:login' %}">- Cerrar sesión</a>
                         {% endif %}
                     </li>
                 </ul>
