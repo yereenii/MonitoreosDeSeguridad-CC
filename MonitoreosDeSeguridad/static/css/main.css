@@ -1030,11 +1030,11 @@ section {
 }
 
 .services .service-item:hover .icon:before {
-  background: #cdaa46;
+  background: #e7bb35;
 }
 
 .services .service-item:hover h3 {
-  border-color: var(--color-primary);
+  border-color: #008aa6;
 }
 
 /*--------------------------------------------------------------

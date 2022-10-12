@@ -17,20 +17,6 @@
                     <div class="d-flex justify-content-center justify-content-lg-start">
                         <a href="#actos" class="btn-get-started">Selecciona tu monitoreo</a>
                     </div>
-
-                    {% if user.is_authenticaded %}
-                        {% if request.user.is_staff %}
-                            <div class="d-flex justify-content-center justify-content-lg-start">
-                                <a href="#actos" class="btn-get-started">Registra un usuariostaff</a>
-                            </div>
-                        {% endif %}
-                    {% else %}
-                        <div class="d-flex justify-content-center justify-content-lg-start">
-                            <a href="{% url 'usuariourl:registro_colab' %}" class="btn-get-started">Registra un usuario</a>
-                        </div>
-                    {% endif %}
-
-
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
                     <img src="{% static "img/hero-img.svg" %}" class="img-fluid" alt="" data-aos="zoom-out"
@@ -55,7 +41,8 @@
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-shield-fill-check"></i></div>
-                            <h4 class="title"><a href="{% url 'reportesapp:actosseguros' %}" class="stretched-link">Actos Seguros</a></h4>
+                            <h4 class="title"><a href="{% url 'reportesapp:actosseguros' %}" class="stretched-link">Actos
+                                Seguros</a></h4>
                         </div>
                     </div>
                     <!--End Icon Box -->
@@ -63,7 +50,8 @@
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
-                            <h4 class="title"><a href="{% url 'reportesapp:condicionesinseguras' %}" class="stretched-link">Condiciones Inseguras</a></h4>
+                            <h4 class="title"><a href="{% url 'reportesapp:condicionesinseguras' %}"
+                                                 class="stretched-link">Condiciones Inseguras</a></h4>
                         </div>
                     </div>
                     <!--End Icon Box -->
@@ -71,7 +59,8 @@
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-bandaid-fill"></i></div>
-                            <h4 class="title"><a href="{% url 'reportesapp:incidentesmenores' %}" class="stretched-link">Incidentes Menores</a></h4>
+                            <h4 class="title"><a href="{% url 'reportesapp:incidentesmenores' %}"
+                                                 class="stretched-link">Incidentes Menores</a></h4>
                         </div>
                     </div>
                     <!--End Icon Box -->
@@ -83,6 +72,78 @@
         </div>
     </section>
     <!-- End Hero Section -->
+
+    {% if request.user.is_staff %}
+     <!-- ======= Our Services Section ======= -->
+    <section id="services" class="services sections-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Descargar Reportes Recabados</h2>
+        </div>
+
+        <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item  position-relative">
+              <div class="icon">
+                <i class="bi bi-clipboard2-pulse"></i>
+              </div>
+              <h3>Actos Inseguros</h3>
+              <p>Detectados por los colaboradores para informar Actos Inseguros</p>
+              <a href="#" class="readmore stretched-link">Descargar <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-clipboard2-heart-fill"></i>
+              </div>
+              <h3>Actos Seguros</h3>
+              <p>Detectados por los colaboradores para informar Actos Seguros</p>
+              <a href="#" class="readmore stretched-link">Descargar<i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-clipboard2-x"></i>
+              </div>
+              <h3>Condiciones Inseguras</h3>
+              <p>Condiciones detectadas como inseguras dentro del departamento de Medio Ambiente</p>
+              <a href="#" class="readmore stretched-link">Descargar <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-clipboard2-minus-fill"></i>
+              </div>
+              <h3>Incidentes Menores</h3>
+              <p>Incidentes detectados en el departamento de Medio Ambiente</p>
+              <a href="#" class="readmore stretched-link">Descargar <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-calendar4-week"></i>
+              </div>
+              <h3>Apego Asesores y Operadores</h3>
+              <p>Generación para asesores y operadores</p>
+              <a href="#" class="readmore stretched-link">Descargar <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+    </section><!-- End Our Services Section -->
+    {% endif %}
 
     <main id="main">
 
