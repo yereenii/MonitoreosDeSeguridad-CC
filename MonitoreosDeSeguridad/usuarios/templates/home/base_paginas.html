@@ -1,4 +1,4 @@
-{% extends "base_bootstrap.html" %}
+{% extends "home/base_bootstrap.html" %}
 
 {% block head %}
     <!-- ======= Header ======= -->
@@ -9,14 +9,14 @@
     <header id="header" class="header d-flex align-items-center">
 
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-            <a href="{% url 'reportesapp:home' %}" class="logo d-flex align-items-center">
+            <a href="{% url 'usuariourl:home' %}" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="/img/logo.png" alt=""> -->
                 <h1 style="color: #eec036">Compañía Cervecera de Zacatecas &nbsp;<span>AB InBev</span></h1>
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="{% url 'reportesapp:home' %}">Inicio</a></li>
+                    <li><a href="{% url 'usuariourl:home' %}">Inicio</a></li>
                     {% if request.user.is_staff %}
                         <li><a href="{% url 'usuariourl:lista_colaboradores' %}">Colaboradores</a></li>
                     {% endif %}
@@ -80,7 +80,7 @@
     <footer id="footer" class="footer">
         <div class="container">
             <div class="col-md-12 col-sm-12 footer-info">
-                <a href="{% url 'reportesapp:home' %}" class="logo ">
+                <a href="{% url 'usuariourl:home' %}" class="logo ">
                     <span style="color: #eec036">Compañía Cervecera de Zacatecas &nbsp;</span>
                     <span style="color: #f96f59"> AB InBev</span>
                 </a>

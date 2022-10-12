@@ -16,6 +16,11 @@ from django.contrib.auth.decorators import login_required
 #para cuando necesite que este iniciado la sesión
 #@method_decorator(login_required(), name='dispatch')
 
+class Home(TemplateView):
+    template_name = 'home/homebase.html'
+    success_url = reverse_lazy('usuariourl:home')
+
+
 #Función para creación de un colaborador
 @login_required
 def registroColaborador(request):
@@ -30,7 +35,7 @@ def registroColaborador(request):
             user.groups.add(group)
             messages.success(request, 'Cuenta creada exitosamente para: ' + username)
             #Regresa a home
-            return redirect('reportesapp:home')
+            return redirect('usuariourl:home')
 
     context = {'form': form}
     return render(request, 'registro_colaborador.html', context)
@@ -44,7 +49,7 @@ def registroColaborador(request):
 class Login(LoginView):
     template_name = 'login.html'
     form_class = AuthenticationForm
-    success_url = reverse_lazy('reportesapp:home')
+    success_url = reverse_lazy('usuariourl:home')
 
 
 def listaUsuarios(request):
