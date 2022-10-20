@@ -54,4 +54,12 @@ class Login(LoginView):
 
 def listaUsuarios(request):
     usuarios = User.objects.all()
-    return render(request, 'admin_colaboradores.html', {'usuarios': usuarios})
+    return render(request, 'usuarios/detalle/admin_colaboradores.html', {'usuarios': usuarios})
+
+
+############# Ver detalles de un usuario #########
+class UsuarioDetalle(TemplateView):
+    template_name = 'usuarios/detalle/usuario_detail.html'
+    model = User
+    extra_context = {'etiquetatipousuario': 'colaborator'}
+###################################################

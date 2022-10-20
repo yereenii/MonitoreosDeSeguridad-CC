@@ -6,7 +6,7 @@ class ActosInsegurosForm(forms.ModelForm):
 
     class Meta:
         model = ActosInsegurosMod
-        exclude = ['reporte_generado_el','usuario']
+        exclude = ['reporte_generado_el','user']
 
     def __init__(self, *args, **kwargs):
         super(ActosInsegurosForm, self).__init__(*args, **kwargs)

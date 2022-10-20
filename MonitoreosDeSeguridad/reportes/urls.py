@@ -11,5 +11,5 @@ urlpatterns = [
     path('incidentes-menores/', views.IncidentesMenores.as_view(), name='incidentesmenores'),
     path('condiciones-inseguras/', views.CondicionesInseguras.as_view(), name='condicionesinseguras'),
 
-    path('reporte-exitoso/', views.ReporteExitoso.as_view(), name='reporteexitoso'),
+    path('reporte-exitoso/<int:id>', views.ReporteExitoso.as_view(), name='reporteexitoso'),
 ]

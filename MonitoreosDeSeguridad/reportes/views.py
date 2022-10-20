@@ -74,7 +74,16 @@ class CondicionesInseguras(CreateView):
 
 
 class ReporteExitoso(TemplateView):
+    model = User
     template_name = 'reporte_exitoso.html'
-    success_url = reverse_lazy('reportesapp:reporteexitoso')
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        self.extra_context = {
+            'id': context['id']
+        }
+        print(self.extra_context)
+        return self.render_to_response(context)
+
 
 

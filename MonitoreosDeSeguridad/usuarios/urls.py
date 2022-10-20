@@ -12,4 +12,6 @@ urlpatterns = [
     path('registro/', views.registroColaborador, name='registro_colab'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('colaboradores/', views.listaUsuarios, name='lista_colaboradores'),
+
+    path('verUsuario/<int:pk>', views.UsuarioDetalle.as_view(), name='verusuario'),
 ]

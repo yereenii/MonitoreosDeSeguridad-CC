@@ -45,9 +45,8 @@
                     <li>
                         {% if user.is_authenticated %}
                             {% if request.user.groups.all.0.name == "colaborador" or request.user.is_staff %}
-                                <a href="#contact"> {{ user.get_username }}</a>
-                                <a class="#contact"
-                                   href="{% url 'usuariourl:logout' %}?next={% url 'usuariourl:login' %}">- Cerrar
+                                <a href="{% url 'usuariourl:verusuario' user.id %}"> {{ user.get_username }}</a>
+                                <a href="{% url 'usuariourl:logout' %}?next={% url 'usuariourl:login' %}">- Cerrar
                                     sesión</a>
                             {% endif %}
                         {% else %}

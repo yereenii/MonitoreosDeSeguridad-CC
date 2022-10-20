@@ -74,7 +74,7 @@ class ActosInsegurosMod(models.Model):
     ]
 
     reporte_generado_el = models.DateTimeField(auto_now=True)
-    usuario = models.ForeignKey(User, verbose_name="Usuario", related_name="usuariogenerador", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name="Usuario", related_name="usuariogenerador", on_delete=models.CASCADE)
 
     bloqueVPO = models.CharField('Bloque VPO ', max_length=4, choices=BLOQUEVPO)
     clasificacionAI = models.CharField('Clasificación de Acto Inseguro ', max_length=2, choices=CLASIFICACIONAI)

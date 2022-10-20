@@ -1,0 +1,53 @@
+{% extends "usuarios/base_paginas.html" %}
+{% block title %}
+    Detalle
+{% endblock %}
+
+{% load static %}
+{% block content %}
+
+    <div class="col-md-10 offset-md-1">
+        <main class="container">
+            <div class="jumbotron">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                        data-bs-target="#editar"
+                                        type="button" role="tab" aria-controls="editar" aria-selected="true">
+                                    Editar Usuario
+                                </button>
+                            </li>
+
+
+                        </ul>
+                        <br>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="editar" role="tabpanel"
+                                 aria-labelledby="home-tab">
+
+                                <div class="card-body">
+                                    <h2 class="card-title">Detalle de Usuario</h2>
+                                    <div class="a">Usuario</div>
+                                    {{ user.username }}
+                                    <div class="a">Nombre de {{ etiquetatipousuario }}:</div>
+                                    {{ user.first_name }} {{ user.last_name }}
+                                    <br>
+                                    <div class="a">Correo:</div>
+                                    {{ user.email }}
+                                    <br>
+                                    <br>
+                                    <a href="{#{% url 'eduacionapp:editar' user.id %} #}" class="btn btn-success">Editar</a>
+                                    <a href="{#{% url 'eduacionapp:home' %} #}" class="btn btn-danger">Cancelar</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
