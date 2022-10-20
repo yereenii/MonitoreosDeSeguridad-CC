@@ -1,6 +1,6 @@
-{% extends "home/base_paginas.html" %}
+{% extends "home/../../../usuarios/templates/usuarios/base_paginas.html" %}
 {% block title %}
-    Actos Inseguros
+    Actos Seguros
 {% endblock title %}
 
 {% load static %}
@@ -9,7 +9,7 @@
     <div class="container">
     <br>
 
-        <h3 class="modal-title" id="tituloacto">Descripción de Acto Inseguro</h3>
+        <h3 class="modal-title" id="tituloacto">Descripción de Acto Seguro</h3>
         <form method="post">
             {% csrf_token %}
             <div class="jumbotron">

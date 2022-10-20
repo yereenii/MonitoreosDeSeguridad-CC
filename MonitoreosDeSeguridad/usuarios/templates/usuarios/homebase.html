@@ -5,7 +5,7 @@
     {% if request.user.is_authenticated %}
         <!-- Cosas que muestra para el alumno  -->
         {% if request.user.groups.all.0.name == "colaborador" or request.user.is_staff %}
-            {% include "home/home.html" %}
+            {% include "usuarios/home.html" %}
         {% endif %}
 
     {% else %}

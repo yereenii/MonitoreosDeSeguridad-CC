@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 #Tuplas Generales
 BLOQUEVPO = [
@@ -72,7 +73,8 @@ class ActosInsegurosMod(models.Model):
         ('4', 'USO CORRECTO DE EQUIPOS Y HERRAMIENTA'),
     ]
 
-
+    reporte_generado_el = models.DateTimeField(auto_now=True)
+    usuario = models.ForeignKey(User, verbose_name="Usuario", related_name="usuariogenerador", on_delete=models.CASCADE)
 
     bloqueVPO = models.CharField('Bloque VPO ', max_length=4, choices=BLOQUEVPO)
     clasificacionAI = models.CharField('Clasificación de Acto Inseguro ', max_length=2, choices=CLASIFICACIONAI)
@@ -87,10 +89,13 @@ class ActosInsegurosMod(models.Model):
     observaciones = models.TextField('Observaciones ', max_length=500)
     grupos = models.CharField('Grupos de Comportamiento ', max_length=1, choices=GRUPOSCOMP)
     precursor = models.CharField('Este acto puede ser precursor SIF', max_length=1, choices=SINO)
-    fecha = models.DateTimeField(auto_now=True)
+
 
 
 class ActosSegurosMod(models.Model):
+    reporte_generado_el = models.DateTimeField(auto_now=True)
+    usuario = models.ForeignKey(User, verbose_name="Usuario", on_delete=models.CASCADE)
+
     bloqueVPO = models.CharField('Bloque VPO ', max_length=4, choices=BLOQUEVPO, default='1.1')
     nombre_reportado = models.TextField('Nombre persona observada', max_length=250, default='')
     felicitacion = models.CharField('Felicitó o Reconoció al personal', max_length=2, choices=SINO, default='1')
@@ -144,7 +149,9 @@ class IncidentesMenoresMod(models.Model):
         ('S','Supervisor'),
     ]
 
-    fecha = models.DateTimeField(auto_now=True)
+    reporte_generado_el = models.DateTimeField(auto_now=True)
+    usuario = models.ForeignKey(User, verbose_name="Usuario", on_delete=models.CASCADE)
+
     turno = models.CharField('Turno', max_length=1, choices=TURNO, default='1')
     nombre_reportador = models.TextField('Nombre de quién detecta ', max_length=300, default='')
     tipo_incidente = models.CharField('Topo de Incidente Reportado', max_length=3, choices=TIPOINCIDENTE, default='DE')
@@ -174,6 +181,9 @@ class CondicionesInsegurasMod(models.Model):
         ('MT','MANTENIMIENTO'),
     ]
 
+    reporte_generado_el = models.DateTimeField(auto_now=True)
+    usuario = models.ForeignKey(User, verbose_name="Usuario", on_delete=models.CASCADE)
+
     descr_condicion = models.TextField('Condición Insegura Detectada', max_length= 500, default='')
     fecha_inicio = models.DateTimeField('Fecha Inicio')
     fecha_fin = models.DateTimeField('Fecha Fin')
@@ -187,7 +197,6 @@ class CondicionesInsegurasMod(models.Model):
     time_corre = models.TextField('Tiempo de Corrección', max_length=100, default='')
     precursor = models.CharField('¿Es precursor SIF?1', max_length=1, choices=SINO)
     grupoycond = models.TextField('Grupo de Condiciones', max_length=250, default='')
-    fecha = models.DateTimeField(auto_now=True)
 
 
 

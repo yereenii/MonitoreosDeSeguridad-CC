@@ -10,4 +10,6 @@ urlpatterns = [
     path('actos-seguros/', views.ActosSeguros.as_view(), name='actosseguros'),
     path('incidentes-menores/', views.IncidentesMenores.as_view(), name='incidentesmenores'),
     path('condiciones-inseguras/', views.CondicionesInseguras.as_view(), name='condicionesinseguras'),
+
+    path('reporte-exitoso/', views.ReporteExitoso.as_view(), name='reporteexitoso'),
 ]

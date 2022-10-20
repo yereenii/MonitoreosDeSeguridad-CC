@@ -1,4 +1,4 @@
-{% extends "home/base_bootstrap.html" %}
+{% extends "usuarios/base_bootstrap.html" %}
 
 {% block head %}
     <!-- ======= Header ======= -->
@@ -44,13 +44,7 @@
                     </li>
                     <li>
                         {% if user.is_authenticated %}
-                            {% if request.user.groups.all.0.name == "colaborador" %}
-                                <a href="#contact"> {{ user.get_username }}</a>
-                                <a class="#contact"
-                                   href="{% url 'usuariourl:logout' %}?next={% url 'usuariourl:login' %}">- Cerrar
-                                    sesión</a>
-                            {% endif %}
-                            {% if request.user.is_staff %}
+                            {% if request.user.groups.all.0.name == "colaborador" or request.user.is_staff %}
                                 <a href="#contact"> {{ user.get_username }}</a>
                                 <a class="#contact"
                                    href="{% url 'usuariourl:logout' %}?next={% url 'usuariourl:login' %}">- Cerrar

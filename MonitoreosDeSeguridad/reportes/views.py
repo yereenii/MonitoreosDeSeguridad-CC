@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
@@ -11,18 +12,52 @@ from .forms import ActosInsegurosMod, ActosInsegurosForm, ActosSegurosMod, Actos
 
 
 class ActosInseguros(CreateView):
+
     model = ActosInsegurosMod
     form_class = ActosInsegurosForm
-    template_name = 'reportes/actosinseguros_form.html'
-    success_url = reverse_lazy('usuariourl:home')
+    success_url = reverse_lazy('reportesapp:reporteexitoso')
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        self.success_url = reverse_lazy('reportesapp:reporteexitoso', kwargs={"id": self.object.id})
+        return super().form_valid(form)
+
+    def get_form(self, form_class=None):
+        if form_class is None:
+            form_class = self.get_form_class()
+        return form_class(**self.get_form_kwargs())
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+
+        if hasattr(self, 'object'):
+            kwargs.update({'instance': self.object})
+        return kwargs
 
 class ActosSeguros(CreateView):
     model = ActosSegurosMod
     form_class = ActosSegurosForm
-    template_name = 'reportes/actosseguros_form.html'
-    success_url = reverse_lazy('usuariourl:home')
+    success_url = reverse_lazy('reportesapp:reporteexitoso')
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        self.success_url = reverse_lazy('reportesapp:reporteexitoso', kwargs={"id": self.object.id})
+        return super().form_valid(form)
 
+    def get_form(self, form_class=None):
+        if form_class is None:
+            form_class = self.get_form_class()
+        return form_class(**self.get_form_kwargs())
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+
+        if hasattr(self, 'object'):
+            kwargs.update({'instance': self.object})
+        return kwargs
 
 class IncidentesMenores(CreateView):
     model = IncidentesMenoresMod
@@ -36,3 +71,10 @@ class CondicionesInseguras(CreateView):
     form_class = CondicionesInsegurasForm
     template_name = 'reportes/condicionesinseguras_form.html'
     success_url = reverse_lazy('usuariourl:home')
+
+
+class ReporteExitoso(TemplateView):
+    template_name = 'reporte_exitoso.html'
+    success_url = reverse_lazy('reportesapp:reporteexitoso')
+
+

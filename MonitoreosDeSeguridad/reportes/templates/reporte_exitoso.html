@@ -1,0 +1,11 @@
+{% extends "home/../../../usuarios/templates/usuarios/base_paginas.html" %}
+{% block title %}
+    Reporte Exitoso
+{% endblock title %}
+
+{% load static %}
+{% block content %}
+    <h1>Reporte exitoso</h1>
+    <a href="{% url 'usuariourl:home' %}" type="button"> Regresar al inicio</a>
+
+{% endblock content %}

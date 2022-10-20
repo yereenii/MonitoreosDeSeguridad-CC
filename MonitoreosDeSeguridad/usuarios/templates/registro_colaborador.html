@@ -1,4 +1,4 @@
-{% extends "home/base_paginas.html" %}
+{% extends "usuarios/base_paginas.html" %}
 {% block title %}
     Registro Colaborador
 {% endblock %}
@@ -17,7 +17,7 @@
                         {% csrf_token %}
                         <div class="row justify-content-center text-left">
                             <div class="form-group col-sm-6 flex-column d-flex">
-                                <label class="form-control-label px-3" for="{{ form.username.id_for_label }}" >No. SAP o Usuario
+                                <label class="form-control-label px-3" for="{{ form.username.id_for_label }}" id="usuer">No. SAP o Usuario
                                     <span class="text-danger"> *</span>
                                 </label>
                                 <input type="text" placeholder="Ingresa con que usuario accederá"
@@ -30,7 +30,7 @@
                         <br>
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex">
-                                <label class="form-control-label px-3" for="{{ form.first_name.id_for_label }}">Nombre
+                                <label class="form-control-label px-3" for="{{ form.first_name.id_for_label }}" id="fname">Nombre
                                     <span class="text-danger"> *</span>
                                 </label>
                                 <input type="text" placeholder="Nombre Colaborador"
@@ -39,7 +39,7 @@
                                        value="{{ form.first_name.value|default_if_none:"" }}">
                             </div>
                             <div class="form-group col-sm-6 flex-column d-flex">
-                                <label class="form-control-label px-3" for="{{ form.last_name.id_for_label }}"> Apellidos
+                                <label class="form-control-label px-3" for="{{ form.last_name.id_for_label }}" id="lname"> Apellidos
                                     <span class="text-danger"> *</span>
                                 </label>
                                 <input type="text" placeholder="Apellidos Colaborador"
@@ -51,7 +51,7 @@
                         <br>
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex">
-                                <label class="form-control-label px-3" for="{{ form.password1.id_for_label }}">Contraseña
+                                <label class="form-control-label px-3" for="{{ form.password1.id_for_label }}" id="pass1">Contraseña
                                     <span class="text-danger"> *</span>
                                 </label>
                                 <input type="password" placeholder=""
@@ -60,7 +60,7 @@
                                        value="{{ form.password1.value|default_if_none:"" }}">
                             </div>
                             <div class="form-group col-sm-6 flex-column d-flex">
-                                <label class="form-control-label px-3" for="{{ form.password2.id_for_label }}">Confirma Contraseña
+                                <label class="form-control-label px-3" for="{{ form.password2.id_for_label }}" id="pass2">Confirma Contraseña
                                     <span class="text-danger"> *</span>
                                 </label>
                                 <input type="password"  placeholder=""
