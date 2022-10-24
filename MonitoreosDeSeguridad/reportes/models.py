@@ -94,7 +94,7 @@ class ActosInsegurosMod(models.Model):
 
 class ActosSegurosMod(models.Model):
     reporte_generado_el = models.DateTimeField(auto_now=True)
-    usuario = models.ForeignKey(User, verbose_name="Usuario", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name="Usuario", related_name="usuariogenerador_as", on_delete=models.CASCADE)
 
     bloqueVPO = models.CharField('Bloque VPO ', max_length=4, choices=BLOQUEVPO, default='1.1')
     nombre_reportado = models.TextField('Nombre persona observada', max_length=250, default='')
@@ -150,7 +150,7 @@ class IncidentesMenoresMod(models.Model):
     ]
 
     reporte_generado_el = models.DateTimeField(auto_now=True)
-    usuario = models.ForeignKey(User, verbose_name="Usuario", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name="Usuario", related_name="usuariogenerador_im", on_delete=models.CASCADE)
 
     turno = models.CharField('Turno', max_length=1, choices=TURNO, default='1')
     nombre_reportador = models.TextField('Nombre de quién detecta ', max_length=300, default='')
@@ -182,7 +182,7 @@ class CondicionesInsegurasMod(models.Model):
     ]
 
     reporte_generado_el = models.DateTimeField(auto_now=True)
-    usuario = models.ForeignKey(User, verbose_name="Usuario", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name="Usuario", related_name="usuariogenerador_ci", on_delete=models.CASCADE)
 
     descr_condicion = models.TextField('Condición Insegura Detectada', max_length= 500, default='')
     fecha_inicio = models.DateTimeField('Fecha Inicio')

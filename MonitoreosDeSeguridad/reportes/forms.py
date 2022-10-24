@@ -22,7 +22,7 @@ class ActosInsegurosForm(forms.ModelForm):
 class ActosSegurosForm(forms.ModelForm):
     class Meta:
         model = ActosSegurosMod
-        exclude = ['reporte_generado_el','usuario']
+        exclude = ['reporte_generado_el','user']
 
     def __init__(self, *args, **kwargs):
         super(ActosSegurosForm, self).__init__(*args, **kwargs)
@@ -40,7 +40,7 @@ class ActosSegurosForm(forms.ModelForm):
 class IncidentesMenoresForm(forms.ModelForm):
     class Meta:
         model = IncidentesMenoresMod
-        exclude = ['reporte_generado_el','usuario']
+        exclude = ['reporte_generado_el','user']
 
     def __init__(self, *args, **kwargs):
         super(IncidentesMenoresForm, self).__init__(*args, **kwargs)
@@ -54,9 +54,11 @@ class IncidentesMenoresForm(forms.ModelForm):
                 field.widget.attrs['class'] = 'form-select'
 
 class CondicionesInsegurasForm(forms.ModelForm):
+    fecha_inicio = forms.DateField( widget=forms.SelectDateWidget())
+    fecha_fin = forms.DateField(widget=forms.SelectDateWidget())
     class Meta:
         model = CondicionesInsegurasMod
-        exclude = ['reporte_generado_el','usuario']
+        exclude = ['reporte_generado_el','user']
 
     def __init__(self, *args, **kwargs):
         super(CondicionesInsegurasForm, self).__init__(*args, **kwargs)
