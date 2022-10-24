@@ -33,8 +33,7 @@ def registroColaborador(request):
 
             group = Group.objects.get(name="colaborador")
             user.groups.add(group)
-            messages.success(request, 'Cuenta creada exitosamente para: ' + username)
-            #Regresa a home
+            #messages.success(request, 'Cuenta creada exitosamente para: ' + username)
             return redirect('usuariourl:lista_colaboradores')
 
     context = {'form': form}
