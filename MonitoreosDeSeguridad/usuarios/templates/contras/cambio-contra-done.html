@@ -1,26 +1,24 @@
-{% extends "usuarios/base_paginas.html" %}
+{% extends 'usuarios/base_nonav.html' %}
+
 {% block title %}
-    Reporte Exitoso
+    Cambio Exitoso
 {% endblock title %}
 
-{% load static %}
 {% block content %}
+
     <div class="hero">
         <div class="page-header d-flex align-items-center">
             <div class="container position-relative">
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-10 text-center">
-                        <br><br><br><br>
-                        <h2>Reporte Realizado con Éxito</h2>
-                        <p>¿Deseas realizar otro reporte?</p>
-                        <a href="{% url 'usuariourl:home' %}" class="btn-get-started">Selecciona tu monitoreo</a>
-                        <br><br><br><br><br><br>
+                        <br><br><br><br><br>
+                        <h2>Tu Contraseña fue cambiada exitosamente</h2>
+                        <a href="{% url 'usuariourl:home' %}" class="btn-get-started">Regresar</a>
+                        <br><br><br><br><br><br><br><br><br><br>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-
-
 {% endblock content %}

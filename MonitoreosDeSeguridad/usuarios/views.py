@@ -1,20 +1,16 @@
 from django.contrib.auth.forms import AuthenticationForm
-from django.utils.decorators import method_decorator
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User, Group
-from django.contrib import messages
 from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
+
+from django.contrib.auth.views import PasswordChangeView,PasswordResetDoneView
 
 from django.shortcuts import render, redirect
 from .forms import UsuarioColaboradorForm
 
 #decoradores
-#from .decorators import unauthenticated_user
 from django.contrib.auth.decorators import login_required
-#para cuando necesite que este iniciado la sesión
-#@method_decorator(login_required(), name='dispatch')
 
 class Home(TemplateView):
     template_name = 'usuarios/homebase.html'
@@ -62,3 +58,14 @@ class UsuarioDetalle(TemplateView):
     model = User
     extra_context = {'etiquetatipousuario': 'colaborator'}
 ###################################################
+
+#########Cambio de Contraseña########
+class CambiodePassword(PasswordChangeView):
+    template_name='contras/cambio-contra.html'
+    success_url=reverse_lazy('usuariourl:cambio-pass-done')
+
+class CambiodePassView(PasswordResetDoneView):
+    template_name='contras/cambio-contra-done.html'
+
+
+#####################################

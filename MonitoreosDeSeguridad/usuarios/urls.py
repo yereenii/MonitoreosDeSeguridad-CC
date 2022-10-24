@@ -1,6 +1,7 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from . import views
+from .views import CambiodePassword, CambiodePassView
 
 app_name='usuariourl'
 
@@ -14,4 +15,7 @@ urlpatterns = [
     path('colaboradores/', views.listaUsuarios, name='lista_colaboradores'),
 
     path('verUsuario/<int:pk>', views.UsuarioDetalle.as_view(), name='verusuario'),
+
+    path('cambio-contra/', CambiodePassword.as_view(), name='cambio-pass-view'),
+    path('cambio-contra/done/', CambiodePassView.as_view(), name='cambio-pass-done'),
 ]
