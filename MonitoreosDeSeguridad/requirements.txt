@@ -1,0 +1,4 @@
+sqlalchemy==1.4.40
+mysqlclient==2.1.1
+pandas==1.5.0
+openpyxl==3.0.10
