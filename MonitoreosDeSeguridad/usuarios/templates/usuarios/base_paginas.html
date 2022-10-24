@@ -32,10 +32,10 @@
                                 <li class="dropdown"><a href="#"><span>Descargar Reportes</span> <i
                                         class="bi bi-chevron-down dropdown-indicator"></i></a>
                                     <ul>
-                                        <li><a href="#">Descarga Actos Inseguros</a></li>
-                                        <li><a href="#">Descarga Actos Seguros</a></li>
-                                        <li><a href="#">Descarga Condiciones Inseguras</a></li>
-                                        <li><a href="#">Descarga Incidentes Menores</a></li>
+                                        <li><a href="{% url 'reportesapp:excel_ai' %}">Descarga Actos Inseguros</a></li>
+                                        <li><a href="{% url 'reportesapp:excel_as' %}">Descarga Actos Seguros</a></li>
+                                        <li><a href="{% url 'reportesapp:excel_ci' %}">Descarga Condiciones Inseguras</a></li>
+                                        <li><a href="{% url 'reportesapp:excel_im' %}">Descarga Incidentes Menores</a></li>
                                         <li><a href="#">Descarga Apego Asesores y Colaboradores</a></li>
                                     </ul>
                                 </li>
