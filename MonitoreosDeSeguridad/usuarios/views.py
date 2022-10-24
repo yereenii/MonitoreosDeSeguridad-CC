@@ -35,10 +35,10 @@ def registroColaborador(request):
             user.groups.add(group)
             messages.success(request, 'Cuenta creada exitosamente para: ' + username)
             #Regresa a home
-            return redirect('usuariourl:home')
+            return redirect('usuariourl:lista_colaboradores')
 
     context = {'form': form}
-    return render(request, 'registro_colaborador.html', context)
+    return render(request, 'registro_colaborador2.html', context)
 
 #class ColaboradorCrear(CreateView):
  #   model = ColaboradorModel
