@@ -155,6 +155,7 @@ class IncidentesMenoresMod(models.Model):
     turno = models.CharField('Turno', max_length=1, choices=TURNO, default='1')
     nombre_reportador = models.TextField('Nombre de quién detecta ', max_length=300, default='')
     tipo_incidente = models.CharField('Topo de Incidente Reportado', max_length=3, choices=TIPOINCIDENTE, default='DE')
+    causa = models.TextField('Causa', max_length=250, default='')
     departamento = models.TextField('Departamento', max_length=250, default='')
     area = models.TextField('Área', max_length=250, default='')
     maqoequipo = models.TextField('Máquina o Equipo', max_length=300, default='')
