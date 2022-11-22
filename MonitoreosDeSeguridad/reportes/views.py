@@ -156,55 +156,6 @@ class ReporteExitoso(TemplateView):
 
 class GenExcel_ActosIns(TemplateView):
     def get(self, request, *args, **kwargs):
-        archivo = BytesIO()
-        result_dataFrame = pd.read_sql("Select * from reportes_actosinsegurosmod;", con=connection)
-        result_dataFrame.head()
-        response = HttpResponse(content_type='application/vnd.ms-excel')
-        execl_name = '01_ActosInseguros'
-        response['Content-Disposition'] = 'attachment;filename={0}.xlsx'.format(execl_name)
-        result_dataFrame.to_excel(archivo, index=False)
-        response.write(archivo.getvalue())
-        return response
-
-class GenExcel_ActosSeg(TemplateView):
-    def get(self, request, *args, **kwargs):
-        archivo = BytesIO()
-        result_dataFrame = pd.read_sql("Select * from reportes_actossegurosmod;", con=connection)
-        result_dataFrame.head()
-        response = HttpResponse(content_type='application/vnd.ms-excel')
-        execl_name = '02_ActosSeguros'
-        response['Content-Disposition'] = 'attachment;filename={0}.xlsx'.format(execl_name)
-        result_dataFrame.to_excel(archivo, index=False)
-        response.write(archivo.getvalue())
-        return response
-
-class GenExcel_CondInseg(TemplateView):
-    def get(self, request, *args, **kwargs):
-        archivo = BytesIO()
-        result_dataFrame = pd.read_sql("Select * from reportes_condicionesinsegurasmod;", con=connection)
-        result_dataFrame.head()
-        response = HttpResponse(content_type='application/vnd.ms-excel')
-        execl_name = '03_CondicionesInseguras'
-        response['Content-Disposition'] = 'attachment;filename={0}.xlsx'.format(execl_name)
-        result_dataFrame.to_excel(archivo, index=False)
-        response.write(archivo.getvalue())
-        return response
-
-class GenExcel_IncidMenores(TemplateView):
-    def get(self, request, *args, **kwargs):
-        archivo = BytesIO()
-        result_dataFrame = pd.read_sql("Select * from reportes_incidentesmenoresmod;", con=connection)
-        result_dataFrame.head()
-        response = HttpResponse(content_type='application/vnd.ms-excel')
-        execl_name = '04_IncidentesMenores'
-        response['Content-Disposition'] = 'attachment;filename={0}.xlsx'.format(execl_name)
-        result_dataFrame.to_excel(archivo, index=False)
-        response.write(archivo.getvalue())
-        return response
-
-
-class Excel_actosinseguros(TemplateView):
-    def get(self, request, *args, **kwargs):
         obtener_registros = ActosInsegurosMod.objects.all()
 
         bloque = list()
@@ -225,8 +176,8 @@ class Excel_actosinseguros(TemplateView):
             bloque.append(registro.get_bloqueVPO_display())
             clasificacion.append(registro.get_clasificacionAI_display())
             nreportado.append(registro.nombre_reportado)
-            descripcion.append(registro.desc_sancion)
-            dep.append(registro.departamento)
+            descripcion.append(registro.get_desc_sancion_display())
+            dep.append(registro.get_departamento_display())
             contra.append(registro.es_contratista)
             area.append(registro.area)
             nreportador.append(registro.nombre_reportador)
@@ -234,26 +185,183 @@ class Excel_actosinseguros(TemplateView):
             grupoc.append(registro.get_grupos_display())
             precursor.append(registro.get_precursor_display())
 
-            #Fecha
+            # Fecha
             objDate = str(registro.reporte_generado_el)
             fech.append(objDate)
             usuario.append((registro.user))
 
-
         archivo = BytesIO()
-        df = pd.DataFrame({'BLOQUE VPO': bloque,'CLASIFICACION ACTO INSEGURO':clasificacion,'NOMBRE PERSONA REPORTADA':nreportado,
-                           'DESCRIPCIÓN DE LA SANCIÓN':descripcion,'DEPARTAMENTO O COMPAÑÍA AL QUE SE LE DETECTA EL ACTO INSEGURO':dep,
-                           'EN CASO DE COMPAÑÍA CONTRATISTA ESPECIFICAR DE CUAL SE TRATA':contra,'AREA':area,
-                           'NOMBRE DE QUIEN DETECTA / FUNCION ': nreportador, 'OBSERVACIONES GENERALES':observaciones,
-                           'GRUPOS DE COMPORTAMIENTO':grupoc, 'ESTA ACTO PUEDE SER UN PRECURSO SIF ':precursor, 'FECHA': fech,
-                           'Usuario Que Registró el Reporte': usuario
+        df = pd.DataFrame(
+            {'BLOQUE VPO': bloque, 'CLASIFICACION ACTO INSEGURO': clasificacion, 'NOMBRE PERSONA REPORTADA': nreportado,
+             'DESCRIPCIÓN DE LA SANCIÓN': descripcion,
+             'DEPARTAMENTO O COMPAÑÍA AL QUE SE LE DETECTA EL ACTO INSEGURO': dep,
+             'EN CASO DE COMPAÑÍA CONTRATISTA ESPECIFICAR DE CUAL SE TRATA': contra, 'AREA': area,
+             'NOMBRE DE QUIEN DETECTA / FUNCION ': nreportador, 'OBSERVACIONES GENERALES': observaciones,
+             'GRUPOS DE COMPORTAMIENTO': grupoc, 'ESTA ACTO PUEDE SER UN PRECURSO SIF ': precursor, 'FECHA': fech,
+             'Usuario Que Registró el Reporte': usuario
 
-                           })
+             })
 
         response = HttpResponse(content_type='application/vnd.ms-excel')
         execl_name = '01_ActosInseguros'
         response['Content-Disposition'] = 'attachment;filename={0}.xlsx'.format(execl_name)
-        df.to_excel(archivo, index=False)
+        df.to_excel(archivo, index=True)
+        response.write(archivo.getvalue())
+        return response
+
+class GenExcel_ActosSeg(TemplateView):
+    def get(self, request, *args, **kwargs):
+        obtener_registros = ActosSegurosMod.objects.all()
+
+        bloque = list()
+        nreportado = list()
+        felic = list()
+        njefe = list()
+        dep = list()
+        escontr = list()
+        are = list()
+        nreportador = list()
+        descrip = list()
+        fech=list()
+        usuario=list()
+
+
+        for registro in obtener_registros:
+            bloque.append(registro.get_bloqueVPO_display())
+            nreportado.append(registro.nombre_reportado)
+            felic.append(registro.get_felicitacion_display())
+            njefe.append(registro.nombre_jefinm)
+            dep.append(registro.get_departamento_display())
+            escontr.append(registro.es_contratista)
+            are.append(registro.area)
+            nreportador.append(registro.nombre_reportador)
+            descrip.append(registro.descripcion_as)
+            # Fecha
+            objDate = str(registro.reporte_generado_el)
+            fech.append(objDate)
+            usuario.append((registro.user))
+
+        archivo = BytesIO()
+        df = pd.DataFrame(
+            {'BLOQUE VPO': bloque,'NOMBRE PERSONA OBSERVADA':nreportado,
+             'FELICITO Y/O RECONOCIO AL PERSONALFELICITO Y/O RECONOCIO AL PERSONAL': felic,
+             'NOMBRE JEFE INMEDIATO / FUNCION ':njefe, 'DEPARTAMENTO O COMPAÑÍA CONTRATISTA':dep,
+             'NOMBRE DE LA COMPAÑÍA CONTRATISTA':escontr, 'AREA': are, 'NOMBRE DE QUIEN DETECTA / FUNCION': nreportador,
+             'DESCRIPCIÓN DEL ACTO SEGURO':descrip,'FECHA':fech,'Usuario Que Registró el Reporte': usuario
+             })
+
+        response = HttpResponse(content_type='application/vnd.ms-excel')
+        execl_name = '02_ActosSeguros'
+        response['Content-Disposition'] = 'attachment;filename={0}.xlsx'.format(execl_name)
+        df.to_excel(archivo, index=True)
+        response.write(archivo.getvalue())
+        return response
+
+class GenExcel_CondInseg(TemplateView):
+    def get(self, request, *args, **kwargs):
+        obtener_registros = CondicionesInsegurasMod.objects.all()
+
+        cond = list()
+        fechinicio = list()
+        fechfin = list()
+        estat = list()
+        dep = list()
+        area = list()
+        nreportador = list()
+        clasif = list()
+        alc = list()
+        numaviso = list()
+        timecorrec = list()
+        prec = list()
+        grupycon = list()
+        usuario = list()
+
+        for registro in obtener_registros:
+            cond.append(registro.descr_condicion)
+            # Fecha Inicio
+            inicioobjDate = str(registro.fecha_inicio)
+            fechinicio.append(inicioobjDate)
+            # Fecha Fin
+            finobjDate = str(registro.fecha_fin)
+            fechfin.append(finobjDate)
+            estat.append(registro.get_estatus_display())
+            dep.append(registro.departamento)
+            area.append(registro.area)
+            nreportador.append(registro.nombre_reportador)
+            clasif.append(registro.get_clas_condic_display())
+            alc.append(registro.get_alcance_display())
+            numaviso.append(registro.num_aviso)
+            timecorrec.append(registro.time_corre)
+            prec.append(registro.get_precursor_display())
+            grupycon.append(registro.grupoycond)
+
+            usuario.append((registro.user))
+
+        archivo = BytesIO()
+        df = pd.DataFrame(
+            {'Condición Insegura Detectada': cond, 'Fecha Incio': fechinicio, 'Fecha Fin':fechfin,
+             'Estatus':estat, 'Departamento o Comañía':dep, 'Área':area,'Nombre de Quién la Detectó': nreportador,
+             'Clasificación de la Condición':clasif, 'Alcance':alc,'No. de Aviso':numaviso, 'Tiempo de Corrección':timecorrec,
+             '¿Es Precursor SIF?':prec,'Grupo de Condiciones':grupycon, 'Usuario Que Registró el Reporte': usuario
+             })
+
+        response = HttpResponse(content_type='application/vnd.ms-excel')
+        execl_name = '03_CondicionesInseguras'
+        response['Content-Disposition'] = 'attachment;filename={0}.xlsx'.format(execl_name)
+        df.to_excel(archivo, index=True)
+        response.write(archivo.getvalue())
+        return response
+
+class GenExcel_IncidMenores(TemplateView):
+    def get(self, request, *args, **kwargs):
+        obtener_registros = IncidentesMenoresMod.objects.all()
+
+        fech = list()
+        turn = list()
+        nreportador = list()
+        usuario =list()
+        tipoinc = list()
+        caus= list()
+        dep = list()
+        are = list()
+        maqequipo = list()
+        poterc = list()
+        puest = list()
+        desc = list()
+        sem = list()
+        mes = list()
+
+        for registro in obtener_registros:
+            # Fecha
+            objDate = str(registro.reporte_generado_el)
+            fech.append(objDate)
+            turn.append(registro.get_turno_display())
+            nreportador.append(registro.nombre_reportador)
+            tipoinc.append(registro.get_tipo_incidente_display())
+            caus.append(registro.causa)
+            dep.append(registro.departamento)
+            are.append(registro.area)
+            maqequipo.append(registro.maqoequipo)
+            poterc.append(registro.get_propoterc_display())
+            puest.append(registro.get_puesto_display())
+            desc.append(registro.descripcion)
+            sem.append(registro.semana)
+            mes.append(registro.mes)
+            usuario.append((registro.user))
+
+        archivo = BytesIO()
+        df = pd.DataFrame(
+            {'Fecha': fech,'TURNO':turn,'NOMBRE DE LA PERSONA QUE REPORTA EL INCIDENTE':nreportador,
+             'TIPO DE INCIDENTES REPORTADO':tipoinc,'CAUSA':caus,'DEPARTAMENTO':dep,'ÁREA':are,
+             'MAQUINARIA O EQUIPO':maqequipo,'PROPIO O TERCIARIA':poterc,'PUESTO DE QUIEN REPORTA':puest,
+             'DESCRIPCIÓN GENERAL DEL INCIDENTE':desc, 'SEMANA':sem,'MES':mes,
+             'Usuario Que Registró el Reporte': usuario
+             })
+
+        response = HttpResponse(content_type='application/vnd.ms-excel')
+        execl_name = '04_IncidentesMenores'
+        response['Content-Disposition'] = 'attachment;filename={0}.xlsx'.format(execl_name)
+        df.to_excel(archivo, index=True)
         response.write(archivo.getvalue())
         return response
 
