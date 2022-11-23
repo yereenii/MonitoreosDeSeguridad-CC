@@ -8,6 +8,13 @@ class ActosInsegurosForm(forms.ModelForm):
         model = ActosInsegurosMod
         exclude = ['reporte_generado_el','user']
 
+        widgets = {
+            'nombre_reportado': forms.TextInput(attrs={'class': 'form-control',}),
+            'es_contratista': forms.TextInput(attrs={'class': 'form-control',}),
+            'area': forms.TextInput(attrs={'class': 'form-control', }),
+            'nombre_reportador': forms.TextInput(attrs={'class': 'form-control', }),
+        }
+
     def __init__(self, *args, **kwargs):
         super(ActosInsegurosForm, self).__init__(*args, **kwargs)
         self.fields['es_contratista'].required = False
@@ -23,6 +30,14 @@ class ActosSegurosForm(forms.ModelForm):
     class Meta:
         model = ActosSegurosMod
         exclude = ['reporte_generado_el','user']
+
+        widgets = {
+            'nombre_reportado': forms.TextInput(attrs={'class': 'form-control', }),
+            'nombre_jefinm': forms.TextInput(attrs={'class': 'form-control', }),
+            'es_contratista': forms.TextInput(attrs={'class': 'form-control', }),
+            'area': forms.TextInput(attrs={'class': 'form-control', }),
+            'nombre_reportador': forms.TextInput(attrs={'class': 'form-control', }),
+        }
 
     def __init__(self, *args, **kwargs):
         super(ActosSegurosForm, self).__init__(*args, **kwargs)
@@ -42,6 +57,17 @@ class IncidentesMenoresForm(forms.ModelForm):
         model = IncidentesMenoresMod
         exclude = ['reporte_generado_el','user']
 
+        widgets = {
+            'nombre_reportado': forms.TextInput(attrs={'class': 'form-control', }),
+            'departamento': forms.TextInput(attrs={'class': 'form-control', }),
+            'area': forms.TextInput(attrs={'class': 'form-control', }),
+            'maqoequipo': forms.TextInput(attrs={'class': 'form-control', }),
+            'nombre_reportador': forms.TextInput(attrs={'class': 'form-control', }),
+            'causa': forms.TextInput(attrs={'class': 'form-control', }),
+            'semana': forms.TextInput(attrs={'class': 'form-control', }),
+            'mes': forms.TextInput(attrs={'class': 'form-control', }),
+        }
+
     def __init__(self, *args, **kwargs):
         super(IncidentesMenoresForm, self).__init__(*args, **kwargs)
 
@@ -59,6 +85,17 @@ class CondicionesInsegurasForm(forms.ModelForm):
     class Meta:
         model = CondicionesInsegurasMod
         exclude = ['reporte_generado_el','user']
+
+        widgets = {
+            'fecha_inicio': forms.DateField(),
+            'departamento': forms.TextInput(attrs={'class': 'form-control', }),
+            'area': forms.TextInput(attrs={'class': 'form-control', }),
+            'nombre_reportador': forms.TextInput(attrs={'class': 'form-control', }),
+            'num_aviso': forms.TextInput(attrs={'class': 'form-control', }),
+            'time_corre': forms.TextInput(attrs={'class': 'form-control', }),
+            'grupoycond': forms.TextInput(attrs={'class': 'form-control', }),
+
+        }
 
     def __init__(self, *args, **kwargs):
         super(CondicionesInsegurasForm, self).__init__(*args, **kwargs)

@@ -78,15 +78,15 @@ class ActosInsegurosMod(models.Model):
 
     bloqueVPO = models.CharField('Bloque VPO ', max_length=4, choices=BLOQUEVPO)
     clasificacionAI = models.CharField('Clasificación de Acto Inseguro ', max_length=2, choices=CLASIFICACIONAI)
-    nombre_reportado = models.TextField('Nombre persona observada', max_length=250)
+    nombre_reportado = models.TextField('Nombre persona observada', max_length=300)
     desc_sancion = models.CharField('Descripción de Sanción ', max_length=1, choices=DESCRIPCIONSANCION)
     departamento = models.CharField('Departamento al que se detecta el Acto Inseguro ', max_length=2,
                                     choices=DEPARTAMENTO)
-    es_contratista = models.TextField('En caso de ser Contratista, especificar de cuál se trata ', max_length=250,
+    es_contratista = models.TextField('En caso de ser Contratista, especificar de cuál se trata ', max_length=300,
                                       null=True)
-    area = models.TextField('Área ', max_length=350)
+    area = models.TextField('Área ', max_length=200)
     nombre_reportador = models.TextField('Nombre de quién detecta ', max_length=300)
-    observaciones = models.TextField('Observaciones ', max_length=500)
+    observaciones = models.TextField('Observaciones ', max_length=700)
     grupos = models.CharField('Grupos de Comportamiento ', max_length=1, choices=GRUPOSCOMP)
     precursor = models.CharField('Este acto puede ser precursor SIF', max_length=1, choices=SINO)
 
